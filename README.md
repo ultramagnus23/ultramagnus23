@@ -19,4 +19,4 @@ First-year CS + Entrepreneurship student at **Ashoka University**, building prod
 
 **Find me**
 
-[Portfolio](https://ctport2026.vercel.app) · [GitHub](https://github.com/ultramagnus23) · LinkedIn <!-- TODO: confirm LinkedIn URL -->
+[Portfolio](https://ctport2026.vercel.app) · [GitHub](https://github.com/ultramagnus23) · [LinkedIn](https://linkedin.com/in/chaitanya-tripathi)
