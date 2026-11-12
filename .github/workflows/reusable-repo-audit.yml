@@ -2,6 +2,11 @@ name: Reusable Repository Security and Quality Audit
 
 on:
   workflow_call:
+  workflow_dispatch:
+
+concurrency:
+  group: reusable-repo-audit-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
@@ -13,7 +18,7 @@ jobs:
     timeout-minutes: 35
     steps:
       - name: Checkout full history
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
         with:
           fetch-depth: 0
           persist-credentials: false
@@ -60,7 +65,7 @@ jobs:
 
       - name: Upload audit reports
         if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
         with:
           name: repository-audit-${{ github.run_number }}
           path: reports/
