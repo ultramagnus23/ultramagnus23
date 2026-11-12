@@ -37,7 +37,7 @@ jobs:
 
       - name: OSV-Scanner dependency scan
         continue-on-error: true
-        run: docker run --rm -v "$PWD:/src" --entrypoint osv-scanner ghcr.io/google/osv-scanner:v2.7.1 scan source -r /src --format json --output-file /src/reports/osv.json
+        run: docker run --rm -v "$PWD:/src" ghcr.io/google/osv-scanner:v2.7.1 scan source -r /src --format json --output-file /src/reports/osv.json
 
       - name: Ruff Python lint
         continue-on-error: true
