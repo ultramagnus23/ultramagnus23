@@ -71,7 +71,8 @@ def main():
      else:
       sev="HIGH" if x.get("level")=="error" else "MODERATE" if x.get("level")=="warning" else "LOW";hay=(rule+" "+msg).lower()
       kind="security-code" if any(t in hay for t in ("security","sql","secret","traversal","ssrf","urllib","pickle","dangerouslysetinnerhtml","websocket","child-process","integrity","csrf","taint")) else "quality"
-     fp=(x.get("fingerprints") or {}).get("matchBasedId/v1") or (x.get("partialFingerprints") or {}).get("primaryLocationLineHash") or f"{rule}|{file}|{line}"
+     fp=(x.get("fingerprints") or {}).get("matchBasedId/v1") or (x.get("partialFingerprints") or {}).get("primaryLocationLineHash") or ""
+     if not fp or fp.lower() in ("requires login","unknown"):fp=f"{rule}|{file}|{line}"
      emit(repo,"SARIF|"+repo+"|"+tool+"|"+fp,kind,sev,msg.splitlines()[0] or rule,file=file,line=line,rule_id=rule,sources=[tool],evidence=[msg[:500]],notes="Review source context/data flow; scanner output does not prove exploitability.")
   for p in rd.glob("npm-audit*.json"):
    d=load(p)
